@@ -1,0 +1,110 @@
+<!doctype html> 
+<meta charset="UTF-8">
+<html> 
+  <head> 
+  <title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="themes/indexcss2.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src = "index.js"></script>
+</head> 
+
+
+<body onload="getSession();" onunload="saveSession();"> 
+<div data-role="page" id="contactList">
+  <div data-role="header">
+	<a id = "addContactID" onclick="addContact();" href="#addContactPage" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add</a>
+    <h1>Contact List</h1>
+  </div>
+  <div data-role="content">
+  <ul id = "contatcListID"data-role="listview" data-filter="true" data-filter-placeholder="Search contacts..." data-inset="true">
+</ul>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h1>Contact List</h1>
+  </div>
+</div>
+<!-- contcat view page -->
+<div data-role="page" id="contactInformation">
+  <div data-role="header" >
+	<a id ="contactItemBackID" href="#contactList" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">back</a>
+    <h1 id ="contactNameHeaderID"></h1>
+  </div>
+  <div data-role="content">
+	<div style="width: 40%;">
+        <img alt="" id ="imageTypeID" style="width: 100%;">
+    </div>
+	<div>
+		<a href="#deleteDialogID" id ="deleteContactID" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all ui-btn-inline">No text</a>
+		<a href="#addContactPage" id="editContactID" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all ui-btn-inline">No text</a>
+		<a href="#tel" id="callContactId" onclick="callPhone()" class="ui-btn ui-icon-phone ui-btn-icon-notext ui-corner-all ui-btn-inline">No text</a>
+	</div>
+	<div>
+		<br>
+		<b style="width: 40%; font-size:18px; background-color:#92CDD4;">Mobile Number : </b><b id="mobNumberID" style="width: 40%; font-size:18px; margin-left: 20px;">01009781993</b>
+	</div>
+	<br>
+	<div>
+		<br>
+		<b style="width: 40%; font-size:18px;background-color:#92CDD4; left:10px;">Email :</b><b id="emailValueID" style="width: 40%; font-size:18px; margin-left: 20px;">ibrahim@fjfj.com</b>
+	</div>
+  </div>
+<div data-role="footer" style="text-align: center;" data-position="fixed">
+    <a href="#contactList" style="width: 30%;"><b id ="contactName">Contact List</b></a>
+  </div>
+</div>
+
+<!-- contcat view page -->
+
+<div data-role="page" id="addContactPage">
+  <div data-role="header">
+     <a id = "backFromAdd" onclick="backAdd();" href = "#contactList" class= "ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all ui-btn-inline">back</a>
+     <h1>New Contatct</h1>
+  </div>
+  <div data-role="content">
+   <div class="ui-field-contain">
+   <label for="text-basic">Name:</label>
+   <input type="text" name="text-basic" id="nameID" value=""> 
+   </div>
+   <div class="ui-field-contain">
+   <label for="tel">Tel:</label>
+   <input type="tel" name="tel" id="telID" value=""> 
+   </div>
+   <div class="ui-field-contain">
+     <label for="email-2">Email:</label>
+     <input type="email" data-clear-btn="true" name="emailID" id="emailID" value="">
+ </div>
+   <div class="ui-field-contain">
+   <label for="slider2">Gender</label>
+   <select name="slider2" id="genderID" data-role="slider">
+       <option value="off">male</option>
+       <option value="on">female</option>
+   </select>
+ </div>
+ <div align ="center">
+ <button type="submit" id ="saveNewContact" onclick ="saveContact();" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow ui-corner-all ui-btn-inline">Save</button>
+ <button id = "cancel" onclick="cancelAdd();" href ="#contactList"class="ui-btn ui-icon-forbidden ui-btn-icon-left ui-shadow ui-corner-all ui-btn-inline">Cancel</button>
+ </div>
+</div>
+ <div data-role="footer" data-position="fixed">
+   <h1>Contact List</h1>
+</div>
+</div>
+<div data-role="page" data-dialog="true" id="deleteDialogID" style="width: 60%; height: 60%; margin-top: 30%; margin-left: 20%;" >
+
+		<div data-role="header" data-theme="b">
+		<h1>Confirm Deleting</h1>
+		</div>
+
+		<div role="main" class="ui-content">
+		<h1>confirm deleting this contact?</h1>
+		<p><br></p>
+			<a href="#contactList" onclick="deleteContact();" class="ui-btn ui-shadow ui-corner-all ui-btn-a">OK</a>
+			<a href="#contactInformation" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Cancel</a>
+		</div>
+	</div>
+</body>
+</html>
