@@ -1,4 +1,5 @@
 var contatcList = [];
+var contactFile;
 var flag;
 var currentIndex =0;
 
@@ -6,17 +7,55 @@ function callPhone(){
 	$("#callContactId").attr("href","tel:"+contatcList[currentIndex].phone);
 }
 function saveSession(){
-	localStorage.setItem("list",JSON.stringify(contatcList));
+	// contactFile.
+	// localStorage.setItem("list",JSON.stringify(contatcList));
+	// localStorage.setItem("list",JSON.stringify(contatcList));
+	// 
 }
+	
 function getSession(){
-	var  contactTest=  JSON.parse(localStorage.getItem("list"));
-	if (contactTest !=null){
 
-		contatcList = contactTest;
+}
+
+window.addEventListener('beforeunload', function (e) {
+	e.preventDefault();
+	e.returnValue = '';
+});	
+
+function saveAll(){
+	const textToBLOB = new Blob([JSON.stringify(contatcList)], { type: 'json/plain' });
+	const sFileName = 'data.json';	   // The file to save the data.
+
+	let newLink = document.createElement("a");
+	newLink.download = sFileName;
+
+	if (window.webkitURL != null) {
+		newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+	}
+	else {
+		newLink.href = window.URL.createObjectURL(textToBLOB);
+		newLink.style.display = "none";
+		document.body.appendChild(newLink);
 	}
 
+	newLink.click();
+}
+
+function readFile(input) {
+	let file = input.files[0];
+	contactFile = file;
+	let reader = new FileReader();
+	reader.readAsText(file);
+	reader.onload = function() {
+	  console.log(reader.result);
+	  var  contactTest=  JSON.parse(reader.result);
+	  console.log(reader.result);
+	  if (contactTest !=null){
+		  contatcList = contactTest;
+	  }
 	
 	homePage();
+	};
 }
 
    function addContact(){
@@ -36,10 +75,12 @@ function getSession(){
    
 $(document).ready(homePage);
 
+
 function onContactItemClicked (index){
 	currentIndex = index;
     $("#contactNameHeaderID").html(contatcList[index].name);
 	$("#mobNumberID").html(contatcList[index].phone);
+	$("#emailValueID").css("white-space","pre-wrap");
 	$("#emailValueID").html(contatcList[index].email);
 	if(contatcList[index].gender == "m"){
 			$("#imageTypeID").attr("src","m1.png");
@@ -78,7 +119,7 @@ function homePage() {
         $cellLink.attr("href","#contactInformation")
         var $cellLabel = $('<lable><b> '+value.name+'<b></lable>');
 		
-        $cellImage.css ("width","15%");
+        $cellImage.css ("width","5	%");
 		$cellImage.css("top","20%");
 		$cellImage.css("left","10%");
         $cellImage.css ("display","inline");
@@ -226,15 +267,17 @@ function Friend (name,phone,email,gender){
 }
 
 function validateMial(){
-	if ($("#emailID").val().match(/.*@.*\.com/)){
-		return true;
-	}
-	return false;
+	// if ($("#emailID").val().match(/.*@.*\.com/)){
+	// 	return true;
+	// }
+	// return false;
+	return true;
 }
 function validatePhone(){
-	var test = false;
-	if ($("#telID").val().match(/^(01)\d{9}$/)){
-		return true;
-	}
-	return false;
+	// var test = false;
+	// if ($("#telID").val().match(/^(01)\d{9}$/)){
+	// 	return true;
+	// }
+	// return false;
+	return true;
 }

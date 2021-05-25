@@ -9,12 +9,21 @@
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="data.json"></script>
+
 <script src = "index.js"></script>
 </head> 
 
 
 <body onload="getSession();" onunload="saveSession();"> 
 <div data-role="page" id="contactList">
+  <!-- <form>
+    <textarea >
+    </textarea> -->
+</form>
+  <input type="file" onchange="readFile(this);">
+  <button onclick="saveAll();">SAVE</button>
+
   <div data-role="header">
 	<a id = "addContactID" onclick="addContact();" href="#addContactPage" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add</a>
     <h1>Contact List</h1>
@@ -49,7 +58,7 @@
 	<br>
 	<div>
 		<br>
-		<b style="width: 40%; font-size:18px;background-color:#92CDD4; left:10px;">Email :</b><b id="emailValueID" style="width: 40%; font-size:18px; margin-left: 20px;">ibrahim@fjfj.com</b>
+		<b style="width: 40%; font-size:18px;background-color:#92CDD4; left:10px;">Disc :</b><b id="emailValueID" style="width: 40%; font-size:18px; margin-left: 20px;">ibrahim@fjfj.com</b>
 	</div>
   </div>
 <div data-role="footer" style="text-align: center;" data-position="fixed">
@@ -74,8 +83,8 @@
    <input type="tel" name="tel" id="telID" value=""> 
    </div>
    <div class="ui-field-contain">
-     <label for="email-2">Email:</label>
-     <input type="email" data-clear-btn="true" name="emailID" id="emailID" value="">
+     <label for="email-2">Disc:</label>
+     <textarea type="text" data-clear-btn="true" name="emailID" id="emailID" value=""></textarea>
  </div>
    <div class="ui-field-contain">
    <label for="slider2">Gender</label>
