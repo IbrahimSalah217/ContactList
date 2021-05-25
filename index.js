@@ -53,7 +53,7 @@ function readFile(input) {
 	  if (contactTest !=null){
 		  contatcList = contactTest;
 	  }
-	
+
 	homePage();
 	};
 }
@@ -103,8 +103,9 @@ function onContactItemClicked (index){
 
 
 function homePage() {
-	   if  (contatcList != null){
-       $(".cellClass").empty();
+if  (contatcList != null){
+	// $(".cellClass").empty();
+	$("#contatcListID").empty();
     $.each(contatcList, function(key, value ) {
 		var imageSrc ="";
 		if(value.gender == "m")
@@ -115,7 +116,7 @@ function homePage() {
 		var $cellLink = $('<a href="#contactInformation" class="ui-btn ui-shadow ui-corner-all">');
 		var $cellButton =$('<a  class="ui-btn ui-shadow ui-btn-icon-notext ui-btn-inline ui-corner-all ui-icon-phone">');
 		$cellButton.attr("href","tel:"+contatcList[key].phone);
-        var $cellImage = $('<img alt="" class="ui-corner-all"src=\"'+imageSrc+'\"style="width: 20%;">');
+        var $cellImage = $('<img alt="" class="ui-corner-all"src=\"'+imageSrc+'\"style="width: 5%;">');
         $cellLink.attr("href","#contactInformation")
         var $cellLabel = $('<lable><b> '+value.name+'<b></lable>');
 		
@@ -168,6 +169,7 @@ function addNewContact (){
        $("#emailID").val("");
        $("#genderID").val("off");
 	}
+	
 }
 function saveContact(){
 	if(flag){
