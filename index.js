@@ -9,12 +9,17 @@ function callPhone(){
 function saveSession(){
 	// contactFile.
 	// localStorage.setItem("list",JSON.stringify(contatcList));
-	// localStorage.setItem("list",JSON.stringify(contatcList));
+		localStorage.setItem("list",JSON.stringify(contatcList));
 	// 
 }
 	
 function getSession(){
+	var  contactTest=  JSON.parse(localStorage.getItem("list"));
+	if (contactTest !=null) {
+		contatcList = contactTest;
+	}
 
+	homePage();
 }
 
 window.addEventListener('beforeunload', function (e) {
@@ -48,10 +53,22 @@ function readFile(input) {
 	reader.readAsText(file);
 	reader.onload = function() {
 	  console.log(reader.result);
-	  var  contactTest=  JSON.parse(reader.result);
+	  var contactTest=  JSON.parse(reader.result);
+	  var contatcList2 = contatcList.copyWithin(0, contatcList.length);
 	  console.log(reader.result);
 	  if (contactTest !=null){
-		  contatcList = contactTest;
+		//   contatcList.push(c);
+		let isExist = false;
+		contactTest.forEach(nw => 
+			{
+				contatcList2.forEach(old => 
+				{ 
+					if (nw.name == old.name) isExist = true;
+				});
+				if (!isExist) contatcList.push(nw);
+				isExist = false;
+			});
+		// Array.prototype.push.apply(contatcList, contactTest);
 	  }
 
 	homePage();
