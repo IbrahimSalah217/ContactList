@@ -119,7 +119,7 @@ function homePage() {
         $cellLink.attr("href","#contactInformation")
         var $cellLabel = $('<lable><b> '+value.name+'<b></lable>');
 		
-        $cellImage.css ("width","5	%");
+        $cellImage.css ("width","5%");
 		$cellImage.css("top","20%");
 		$cellImage.css("left","10%");
         $cellImage.css ("display","inline");
